@@ -7,8 +7,8 @@ body {
 }
 
 #mystery-box {
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   border: 1px solid black;
   display: flex;
   justify-content: center;
@@ -23,9 +23,24 @@ body {
 }
 
 #question-mark {
-  font-size: 72px;
+  font-size: 120px;
 }
 
 #reset-button {
   margin-top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  #mystery-box {
+    width: 150px;
+    height: 150px;
+  }
+
+  #question-mark {
+    font-size: 50px;
+  }
+
+  .choice {
+    font-size: 2rem;
+  }
 }
