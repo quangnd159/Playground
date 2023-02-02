@@ -10,3 +10,8 @@ a {
 a:visited {
   text-decoration: none;
 }
+
+footer {
+  color: gray;
+  font-size: small;
+}
