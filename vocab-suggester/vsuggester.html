@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <title>Vocabulary Suggester</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -19,6 +22,10 @@
     <button id="clear-btn">Clear Questions</button>
     <br><br>
     <p id="vocabulary"></p>
+    <div id="loading-icon" style="display: none;">
+      <i class="fa fa-spinner fa-spin fa-sm"></i>
+    </div>
+    <br>
     <button id="suggest-btn">Suggest Vocabulary</button>
     <br><br>
     <input type="text" id="apiKey">

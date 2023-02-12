@@ -6,6 +6,7 @@ const question = document.getElementById("question");
 const vocabulary = document.getElementById("vocabulary");
 const input = document.getElementById("input");
 const apiKey = document.getElementById("apiKey");
+const loadingIcon = document.getElementById("loading-icon");
 let questions = [];
 
 fetch("questions.json")
@@ -30,6 +31,9 @@ suggestBtn.addEventListener("click", function () {
 
   localStorage.setItem("openai_api_key", key);
 
+  loadingIcon.style.display = "block";
+  vocabulary.innerHTML = "";
+
   fetch("https://api.openai.com/v1/completions", {
     method: "POST",
     headers: {
@@ -48,8 +52,10 @@ suggestBtn.addEventListener("click", function () {
   })
     .then(response => response.json())
     .then(data => {
+      loadingIcon.style.display = "none";
       vocabulary.innerHTML = data.choices[0].text;
     });
+
 });
 
 clearBtn.addEventListener("click", function () {
