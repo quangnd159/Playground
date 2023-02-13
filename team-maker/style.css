@@ -110,3 +110,9 @@ button:-webkit-details-marker {
     flex-basis: calc(33.33% - 40px);
   }
 }
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+}
