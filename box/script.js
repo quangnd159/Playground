@@ -2,7 +2,7 @@ const mysteryBox = document.getElementById("mystery-box");
 const questionMark = document.getElementById("question-mark");
 const resetButton = document.getElementById("reset-button");
 
-const items = [-500, -400, -300, -200, -100, 100, 200, 300, 400, 500, 1000, "💩", "🔄"];
+const items = [-500, -400, -300, -200, -100, 100, 200, 300, 400, 500, 1000, "💩", "🔄", "⭐"];
 
 mysteryBox.addEventListener("click", function () {
   mysteryBox.classList.remove("unopened");
