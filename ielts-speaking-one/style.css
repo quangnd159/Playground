@@ -12,6 +12,7 @@ h1 {
   color: #e43f5a;
   padding: 0 10px 0 10px;
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 u {
@@ -130,6 +131,10 @@ li {
   padding: 0 50px;
   font-size: 20px;
   color: teal;
+}
+
+.fa-spinner {
+  margin-top: 30px;
 }
 
 /* @media only screen and (max-width: 767px) {

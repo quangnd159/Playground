@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>IELTS Speaking Part 1 Challenge</title>
 </head>
 
@@ -15,6 +17,9 @@
     <div id="generator">
       <div id="counter"></div>
       <div id="question-display"></div>
+      <div id="loading-icon" style="display: none;">
+        <i class="fa fa-spinner fa-spin fa-sm"></i>
+      </div>
       <div class="ai">
         <input type="text" placeholder="Enter your OpenAI API key">
         <button id="get-ai-response">Get AI Response</button>

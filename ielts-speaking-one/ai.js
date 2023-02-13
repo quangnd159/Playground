@@ -1,10 +1,16 @@
 const apiKey = document.querySelector("input[type='text']");
 const question = document.querySelector("#question-display");
 const counter = document.querySelector("#counter");
+const loadingIcon = document.getElementById("loading-icon");
 
 document.querySelector("#get-ai-response").addEventListener("click", function () {
   const key = apiKey.value;
   localStorage.setItem("openai_api_key", key);
+
+  loadingIcon.style.display = "block";
+
+  const aiResponse = document.createElement("div");
+  aiResponse.id = "ai-response";
 
   fetch("https://api.openai.com/v1/completions", {
     method: "POST",
@@ -26,6 +32,7 @@ document.querySelector("#get-ai-response").addEventListener("click", function ()
     .then(data => {
       console.log(data);
       const aiResponse = document.createElement("div");
+      loadingIcon.style.display = "none";
       aiResponse.innerHTML = data.choices[0].text;
       aiResponse.id = "ai-response";
       question.appendChild(aiResponse);
