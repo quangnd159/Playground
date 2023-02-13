@@ -4,18 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript" src="script.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <title>IELTS Speaking Part 1 Challenge</title>
 </head>
 
-<body onload="generator()">
+<body>
   <main>
     <h1>IELTS Speaking Part 1 Challenge</h1>
     <div id="generator">
       <div id="counter"></div>
       <div id="question-display"></div>
+      <div class="ai">
+        <input type="text" placeholder="Enter your OpenAI API key">
+        <button id="get-ai-response">Get AI Response</button>
+      </div>
     </div>
     <div class="button-container">
       <button class="button" onclick="generator('random')">🎁</button>
@@ -24,6 +27,8 @@
       <button class="button" onclick="stop()">🛑</button>
     </div>
   </main>
+  <script type="text/javascript" src="script.js"></script>
+  <script src="ai.js"></script>
 </body>
 
 </html>

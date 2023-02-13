@@ -121,6 +121,17 @@ li {
   width: 100%;
 }
 
+.ai {
+  margin-top: 50px;
+}
+
+#ai-response {
+  margin-top: 20px;
+  padding: 0 50px;
+  font-size: 20px;
+  color: teal;
+}
+
 /* @media only screen and (max-width: 767px) {
   #questionDisplay {
     margin-bottom: 10px;
