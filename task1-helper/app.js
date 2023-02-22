@@ -6,8 +6,7 @@ const helpList = document.getElementById("helpList");
 const loadingIcon = document.getElementById("loading-icon");
 
 // Try to load the API key from local storage
-let key = process.env.OPENAI_API_KEY;
-
+let key = localStorage.getItem("openai_api_key") || "";
 
 // Set up an event listener for the button
 getHelpBtn.addEventListener("click", async () => {
