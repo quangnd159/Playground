@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paragraph Planner</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Paragraph Planner</h1>
+    <button id="add-topic" tabindex="-1">+ Topic</button>
+    <button id="add-supporting" tabindex="-1">+ Main supporting idea</button>
+    <button id="add-effect" tabindex="-1">+ Effect</button>
+    <button id="add-reason" tabindex="-1">+ Reason</button>
+    <button id="add-example" tabindex="-1">+ Example</button>
+    <button id="add-comparison" tabindex="-1">+ Comparison</button>
+    <button id="add-addition" tabindex="-1">+ Additional info</button>
+  </header>
+  <main>
+    <section class="idea-list">
+      <h2>Outline</h2> 
+      <div id="ideas">
+      </div>
+    </section>
+    <button id="download">Download</button>
+  </main>
+  <footer>
+    <div>Made by <a href="https://dangquang.xyz">Quang Nguyen</a> 💟</div>
+  </footer>
+  <script src="Sortable.js"></script>
+  <script src="main.js"></script>
+  <script>
+    $( "#download" ).on( "click", function() {
+      html2canvas(document.querySelector("#ideas")).then(canvas => {
+        canvas.toBlob(function(blob) {
+          window.saveAs(blob, 'my_outline.jpg');
+        });
+        });
+    });
+  </script>
+</body>
+</html>
