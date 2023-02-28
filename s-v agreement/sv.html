@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Luyện phản xạ: Subject-Verb Agreement</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="generator.js"></script>
+</head>
+
+<body onload="generator()">
+  <div id="wrapper">
+    <!-- Change the text to your needs -->
+    <div align="center">
+      <h2>Luyện phản xạ subject-verb agreement (thì hiện tại)</h2>
+    </div>
+
+    <div id="generator">
+      <h1 id="placeholder"></h1>
+      <button onclick="generator()">Randomize</button>
+      <button onclick="myVar = setInterval(generator, 1500)">Start - 1.5s</button>
+      <button onclick="myVar = setInterval(generator, 2000)">Start - 2s</button>
+      <button onclick="myVar = setInterval(generator, 3000)">Start - 3s</button>
+      <button onclick="clearTimeout(myVar)">Stop</button>
+    </div>
+
+    <div id="instructions">
+      <p>Bấm Randomize để chủ ngữ và động từ hiện ra ngẫu nhiên.</p>
+      <p>Bấm các nút có số giây để chạy tự động với giãn cách thời gian tương ứng. Bấm Stop để dừng lại trước khi chọn
+        nút khác.</p>
+      <p>Đọc to chủ ngữ và động từ thành câu với động từ có dạng đúng.</p>
+      <p>Chủ ngữ là he/she/it hoặc danh từ số ít thì động từ thêm s/es.</p>
+      <p>Chủ ngữ là I/you/we/they hoặc danh từ số nhiều thì động từ không thêm s/es.</p>
+      <p>Với các cấu trúc neither...nor hoặc either...or thì chia động từ theo chủ ngữ gần nhất.</p>
+      <p>Luyện tập mỗi ngày 3 phút để hình thành phản xạ.</p>
+    </div>
+  </div>
+</body>
+
+</html>
