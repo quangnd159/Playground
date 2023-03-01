@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 </head>
+
 <body>
   <header>
     <h1>Paragraph Planner</h1>
@@ -23,25 +25,26 @@
   </header>
   <main>
     <section class="idea-list">
-      <h2>Outline</h2> 
+      <h2>Outline</h2>
       <div id="ideas">
       </div>
     </section>
     <button id="download">Download</button>
   </main>
   <footer>
-    <div>Made by <a href="https://dangquang.xyz">Quang Nguyen</a> 💟</div>
+    <div>Made by <a href="https://dangquang.xyz">Quang</a></div>
   </footer>
   <script src="Sortable.js"></script>
   <script src="main.js"></script>
   <script>
-    $( "#download" ).on( "click", function() {
+    $("#download").on("click", function () {
       html2canvas(document.querySelector("#ideas")).then(canvas => {
-        canvas.toBlob(function(blob) {
+        canvas.toBlob(function (blob) {
           window.saveAs(blob, 'my_outline.jpg');
         });
-        });
+      });
     });
   </script>
 </body>
+
 </html>
