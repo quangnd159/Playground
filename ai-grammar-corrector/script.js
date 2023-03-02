@@ -54,7 +54,7 @@ submitBtn.addEventListener("click", function () {
       output.innerHTML = outputHTML;
 
       const copyBtn = document.createElement("button");
-      copyBtn.textContent = "Copy";
+      copyBtn.textContent = "Copy Feedback";
       copyBtn.addEventListener("click", function () {
         copyBtn.style.display = "none";
         const range = document.createRange();
@@ -65,8 +65,17 @@ submitBtn.addEventListener("click", function () {
         window.getSelection().removeAllRanges();
       });
 
+      const copyCorrectedBtn = document.createElement("button"); // create new button
+      copyCorrectedBtn.textContent = "Copy Only Corrected Text"; // set text content
+      copyCorrectedBtn.addEventListener("click", function () { // add click event listener
+        navigator.clipboard.writeText(correctedText);
+        copyCorrectedBtn.remove(); // remove the button from the DOM
+      });
+
+
       outputContainer.appendChild(output); // append output and copyBtn to the new container
       outputContainer.appendChild(copyBtn);
+      outputContainer.appendChild(copyCorrectedBtn);
 
       const oldOutputContainer = document.getElementById("output-container"); // check if there is an old container
       if (oldOutputContainer) {
@@ -76,6 +85,7 @@ submitBtn.addEventListener("click", function () {
       }
 
       copyBtn.setAttribute("id", "copyBtn");
+      copyCorrectedBtn.setAttribute("id", "copyCorrectedBtn")
     })
     .catch(error => console.error(error));
 });
