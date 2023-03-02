@@ -4,24 +4,26 @@ const apiKey = document.getElementById("apiKey");
 const output = document.getElementById("output");
 const copyBtn = document.getElementById("copyBtn");
 
+const container = document.querySelector('.container');
+
 submitBtn.addEventListener("click", function () {
   const text = inputText.value;
   const key = apiKey.value;
 
   localStorage.setItem("openai_api_key", key);
 
-  fetch("https://api.openai.com/v1/completions", {
+  fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${key}`
     },
     body: JSON.stringify({
-      model: "text-davinci-003",
-      prompt: `Correct this to standard English:\n\n${text}`,
+      model: "gpt-3.5-turbo",
+      messages: [{ "role": "user", "content": `Correct only the grammar of this text:\n\n${text}` }],
       temperature: 0,
       max_tokens: 200,
-      top_p: 1,
+      // top_p: 1,
       // stream: true,
       frequency_penalty: 0,
       presence_penalty: 0
@@ -29,7 +31,7 @@ submitBtn.addEventListener("click", function () {
   })
     .then(response => response.json())
     .then(data => {
-      const correctedText = data.choices[0].text;
+      const correctedText = data.choices[0].message.content;
 
       const diff = Diff.diffWords(text, correctedText);
 
@@ -44,10 +46,15 @@ submitBtn.addEventListener("click", function () {
         }
       });
 
+      const outputContainer = document.createElement("div"); // create new container
+      outputContainer.setAttribute("id", "output-container");
+
+      const output = document.createElement("div");
+      output.setAttribute("id", "output");
       output.innerHTML = outputHTML;
+
       const copyBtn = document.createElement("button");
       copyBtn.textContent = "Copy";
-      copyBtn.style.marginLeft = "10px";
       copyBtn.addEventListener("click", function () {
         copyBtn.style.display = "none";
         const range = document.createRange();
@@ -57,7 +64,18 @@ submitBtn.addEventListener("click", function () {
         document.execCommand("copy");
         window.getSelection().removeAllRanges();
       });
-      output.appendChild(copyBtn);
+
+      outputContainer.appendChild(output); // append output and copyBtn to the new container
+      outputContainer.appendChild(copyBtn);
+
+      const oldOutputContainer = document.getElementById("output-container"); // check if there is an old container
+      if (oldOutputContainer) {
+        oldOutputContainer.replaceWith(outputContainer); // replace the old container with the new one
+      } else {
+        container.appendChild(outputContainer); // if there is no old container, just append the new container to the main container
+      }
+
+      copyBtn.setAttribute("id", "copyBtn");
     })
     .catch(error => console.error(error));
 });
