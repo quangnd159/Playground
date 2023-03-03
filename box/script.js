@@ -4,18 +4,23 @@ const resetButton = document.getElementById("reset-button");
 
 const items = [-500, -400, -300, -200, -100, 100, 200, 300, 400, 500, 1000, "💩", "🔄", "⭐"];
 
-mysteryBox.addEventListener("click", function () {
-  mysteryBox.classList.remove("unopened");
-  mysteryBox.classList.add("opened");
-  questionMark.classList.remove("unopened");
-  questionMark.classList.add("opened");
+let isBoxOpened = false;
 
-  const randomIndex = Math.floor(Math.random() * items.length);
-  questionMark.innerHTML = items[randomIndex];
+mysteryBox.addEventListener("click", function () {
+  if (!isBoxOpened) {
+    isBoxOpened = true;
+    mysteryBox.classList.remove("unopened");
+    mysteryBox.classList.add("opened");
+    questionMark.classList.remove("unopened");
+    questionMark.classList.add("opened");
+
+    const randomIndex = Math.floor(Math.random() * items.length);
+    questionMark.innerHTML = items[randomIndex];
+  }
 });
 
-
 resetButton.addEventListener("click", function () {
+  isBoxOpened = false;
   questionMark.innerHTML = "?";
   mysteryBox.classList.remove("opened");
   mysteryBox.classList.add("unopened");
