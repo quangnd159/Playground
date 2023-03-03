@@ -24,12 +24,9 @@ u {
   text-decoration: none;
 }
 
-/* main {
-  margin-top: 50px;
-} */
-
 #counter {
-  color: gray;
+  color: lightgrey;
+  font-size: 40px;
 }
 
 #generator {
