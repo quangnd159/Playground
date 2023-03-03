@@ -23,8 +23,6 @@ submitBtn.addEventListener("click", function () {
       messages: [{ "role": "user", "content": `Correct only the grammar of this text:\n\n${text}` }],
       temperature: 0,
       max_tokens: 200,
-      // top_p: 1,
-      // stream: true,
       frequency_penalty: 0,
       presence_penalty: 0
     })

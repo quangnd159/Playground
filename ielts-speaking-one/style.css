@@ -1,18 +1,22 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #444;
 }
 
 h1 {
   text-align: center;
   color: #e43f5a;
-  padding: 0 10px 0 10px;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
+  padding: 0 10px;
+  margin: 20px 0;
+  font-size: 3rem;
 }
 
 u {
@@ -20,9 +24,9 @@ u {
   text-decoration: none;
 }
 
-main {
+/* main {
   margin-top: 50px;
-}
+} */
 
 #counter {
   color: gray;
@@ -38,10 +42,12 @@ main {
 #question-display {
   padding: 0 30px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 600;
+  color: #444;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
 }
-
 
 #challenges {
   width: 60%;
@@ -58,22 +64,36 @@ li {
   margin: 0 0 10px 0;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .button {
-  margin: 0 10px;
   appearance: none;
-  background-color: #FAFBFC;
-  border: 1px solid rgba(27, 31, 35, 0.15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-  box-sizing: border-box;
-  color: #24292E;
+  opacity: 0.9;
+  background-color: #FFD31D;
+  /* Replace with your desired color */
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: #FFFFFF;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
+  font-size: 2rem;
+  /* Increase font size to make buttons bigger */
+  font-weight: bold;
+  height: 100px;
+  /* Set the height of the buttons */
+  line-height: 100px;
+  /* Vertically center the text within the buttons */
   list-style: none;
-  padding: 6px 16px;
+  padding: 0 20px;
+  /* Add some padding to the buttons */
+  text-align: center;
+  text-transform: uppercase;
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   user-select: none;
   -webkit-user-select: none;
@@ -81,56 +101,91 @@ li {
   vertical-align: middle;
   white-space: nowrap;
   word-wrap: break-word;
+  flex-grow: 1;
+  /* Make the buttons fill the available width */
+  margin: 0;
+  /* Remove the margin */
+}
+
+.button1 {
+  background-color: #ff9800;
+}
+
+.button2 {
+  background-color: #3f51b5;
+}
+
+.button3 {
+  background-color: #009688;
+}
+
+.button4 {
+  background-color: #e43f5a;
 }
 
 .button:hover {
-  background-color: #F3F4F6;
+  opacity: 1;
   text-decoration: none;
-  transition-duration: 0.1s;
 }
 
 .button:disabled {
-  background-color: #FAFBFC;
-  border-color: rgba(27, 31, 35, 0.15);
-  color: #959DA5;
+  background-color: #bbb;
+  color: #fff;
   cursor: default;
 }
 
-.button:active {
-  background-color: #EDEFF2;
-  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-  transition: none 0s;
-}
-
 .button:focus {
-  outline: 1px transparent;
+  outline: none;
 }
 
 .button:before {
   display: none;
 }
 
-.button:-webkit-details-marker {
-  display: none;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-}
-
 .ai {
   margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #dcdcdc;
+  font-size: 16px;
+  color: #333;
+  margin-right: 10px;
+  width: 200px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.ai input[type="text"]:focus {
+  border-bottom-color: #3f51b5;
+  outline: none;
+}
+
+.ai button {
+  border: none;
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.ai button:hover {
+  background-color: #2c387e;
+  cursor: pointer;
 }
 
 #ai-response {
-  margin-top: 20px;
+  margin-top: 26px;
   padding: 0 50px;
-  font-size: 20px;
+  font-size: 30px;
   color: teal;
+  font-weight: 400;
 }
 
 .fa-spinner {
@@ -141,11 +196,5 @@ footer {
   margin-top: 20px;
   text-align: center;
   font-size: 0.8rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
 }
-
-/* @media only screen and (max-width: 767px) {
-  #questionDisplay {
-    margin-bottom: 10px;
-  }
-} */

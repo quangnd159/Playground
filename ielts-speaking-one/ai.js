@@ -12,18 +12,19 @@ document.querySelector("#get-ai-response").addEventListener("click", function ()
   const aiResponse = document.createElement("div");
   aiResponse.id = "ai-response";
 
-  fetch("https://api.openai.com/v1/completions", {
+  fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${key}`
     },
     body: JSON.stringify({
-      model: "text-davinci-003",
-      prompt: `Answer this IELTS Speaking Part 1 questions in 3-4 sentences using natural, conversational English. Do not mirror the question words when answering a yes-no question: ${question.innerHTML}`,
+      model: "gpt-3.5-turbo",
+      messages: [{
+        "role": "user", "content": `Answer this IELTS Speaking Part 1 questions in 3-4 sentences using natural, conversational English. Do not mirror the question words when answering a yes-no question: ${question.innerHTML}.`
+      }],
       temperature: 0.7,
       max_tokens: 100,
-      top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0
     })
@@ -33,7 +34,7 @@ document.querySelector("#get-ai-response").addEventListener("click", function ()
       console.log(data);
       const aiResponse = document.createElement("div");
       loadingIcon.style.display = "none";
-      aiResponse.innerHTML = data.choices[0].text;
+      aiResponse.innerHTML = data.choices[0].message.content;
       aiResponse.id = "ai-response";
       question.appendChild(aiResponse);
     })
