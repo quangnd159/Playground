@@ -23,7 +23,7 @@ document.querySelector("#get-ai-response").addEventListener("click", function ()
       messages: [{
         "role": "user", "content": `Answer this IELTS Speaking Part 1 questions in 3-4 sentences using natural, conversational English. Do not mirror the question words when answering a yes-no question: ${question.innerHTML}.`
       }],
-      temperature: 0.7,
+      temperature: 0.6,
       max_tokens: 100,
       frequency_penalty: 0,
       presence_penalty: 0
@@ -32,11 +32,14 @@ document.querySelector("#get-ai-response").addEventListener("click", function ()
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      const aiResponseContainer = document.createElement("div");
+      aiResponseContainer.classList.add("ai-response-container");
       const aiResponse = document.createElement("div");
       loadingIcon.style.display = "none";
       aiResponse.innerHTML = data.choices[0].message.content;
       aiResponse.id = "ai-response";
-      question.appendChild(aiResponse);
+      aiResponseContainer.appendChild(aiResponse);
+      question.appendChild(aiResponseContainer);
     })
     .catch(err => {
       console.error(err);
