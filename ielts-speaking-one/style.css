@@ -40,6 +40,7 @@ u {
   padding: 0 30px;
   text-align: center;
   font-size: 4rem;
+  line-height: 1.2;
   font-weight: 600;
   color: #444;
   letter-spacing: -1px;
@@ -151,7 +152,7 @@ li {
   border: none;
   border-bottom: 2px solid #dcdcdc;
   font-size: 16px;
-  color: #333;
+  color: lightgray;
   margin-right: 10px;
   width: 200px;
   transition: border-color 0.3s ease-in-out;
@@ -238,6 +239,11 @@ footer {
   #ai-response {
     width: 100%;
     font-size: 1.2rem;
+  }
+
+  .ai input[type="text"] {
+    font-size: 14px;
+    width: 100px;
   }
 
 }
