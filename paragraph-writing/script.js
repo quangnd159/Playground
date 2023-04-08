@@ -1,56 +1,53 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("paragraph-form");
-  const slots = Array.from(document.getElementsByClassName("slots"));
-  const downloadBtn = document.getElementById("download-btn");
-  const wordCountElement = document.getElementById("word-count");
+const { Document, Packer, Paragraph, TextRun } = docx;
+const slots = document.querySelectorAll(".slot");
+const downloadBtn = document.getElementById("download-btn");
+const wordCounter = document.getElementById("word-counter");
 
-  const { Document, Paragraph, TextRun } = docx;
+slots.forEach((slot) => {
+    slot.addEventListener("input", checkRequirements);
+});
 
-  function checkSlotContent(slot) {
-    const text = slot.value.trim();
-    // Ensure there's only one period at the end
-    const regex = /^[^.]*(\.)$/;
-    return regex.test(text);
-  }
+downloadBtn.addEventListener("click", () => {
+    const paragraphs = Array.from(slots)
+        .map((slot) => slot.value.trim())
+        .join(" ");
+    generateDocx(paragraphs);
+});
 
-  function updateDownloadButton() {
-    let wordCount = slots.reduce((count, slot) => {
-      const cleanedText = slot.value.trim().replace(/[^\w\s]/gi, '');
-      const wordCountInSlot = cleanedText === '' ? 0 : cleanedText.split(" ").length;
-      return count + wordCountInSlot;
-    }, 0);
-    wordCountElement.textContent = wordCount;
-    
-    // Added the disabled condition for download button
-    downloadBtn.disabled = !(wordCount >= 100 && slots.every(checkSlotContent));
-    if (downloadBtn.disabled) {
-      downloadBtn.classList.add('disabled'); // Adding disabled class (you already mentioned you have it)
-    } else {
-      downloadBtn.classList.remove('disabled'); // Removing disabled class
-    }
-  }
+function checkRequirements() {
+    let totalWords = 0;
+    let sentencesCount = 0;
+    let validSentences = true;
 
-  function validateSlot(slot) {
-    if (!checkSlotContent(slot)) {
-      slot.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
-    } else {
-      slot.style.backgroundColor = '';
-    }
-  }
+    slots.forEach((slot) => {
+        const text = slot.value;
+        const words = text.trim().split(/\s+/).filter((word) => word.length > 0);
+        const sentences = text.trim().split(/[.?!]+/).filter((sentence) => sentence.trim().length > 0);
 
-  slots.forEach(slot => {
-    slot.addEventListener("input", () => {
-      updateDownloadButton();
-      validateSlot(slot);
+        if (sentences.length > 1) {
+            slot.style.backgroundColor = "#ffcccc";
+            validSentences = false;
+        } else {
+            slot.style.backgroundColor = "";
+        }
+
+        if (words.length > 0) {
+            sentencesCount++;
+        }
+
+        totalWords += words.length;
     });
-    slot.addEventListener("blur", () => validateSlot(slot));
-  });
 
-  function generateDocx(paragraphText) {
-    const textRuns = paragraphText.split('\n').map(text => new TextRun(text));
+    wordCounter.textContent = totalWords;
+
+    downloadBtn.disabled = !(totalWords >= 100 && sentencesCount === slots.length && validSentences);
+}
+
+function generateDocx(paragraphText) {
+    const textRuns = paragraphText.split("\n").map((text) => new TextRun(text));
 
     const paragraph = new Paragraph({
-        children: textRuns
+        children: textRuns,
     });
 
     // Pass the sections property directly to the Document constructor
@@ -66,23 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
     });
 
-    docx.Packer.toBlob(document).then((blob) => {
+    Packer.toBlob(document).then((blob) => {
         saveAs(blob, "paragraph.docx");
     });
-  }
-
-  downloadBtn.addEventListener("click", () => {
-    const paragraphs = slots.map(slot => slot.value.trim()).join(" ");
-    generateDocx(paragraphs);
-  });
-
-  // Adjust the textarea height to the content 
-  function autoResizeTextarea() {
-    this.style.height = 'auto';
-    this.style.height = (this.scrollHeight) + 'px';
-  }
-
-  document.querySelectorAll('.slots').forEach(slot => {
-    slot.addEventListener('input', autoResizeTextarea);
-  });
-});
+}

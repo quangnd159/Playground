@@ -4,59 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paragraph Writing</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/docx@8.0.1/build/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   </head>
-  <body class="bg-white text-black min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- Form starts here -->
-        <div class="md:col-span-2">
-          <h1 class="text-4xl font-bold mb-8">Paragraph Writing</h1>
-          <form id="paragraph-form">
-            <div class="mb-4">
-              <label class="block mb-2 text-lg font-semibold">Topic sentence</label>
-              <textarea id="slot1" class="slots w-full p-3 border border-gray-300 rounded-md resize-none" rows="1" required></textarea>
-            </div>
-            <div class="mb-4">
-              <label class="block mb-2 text-lg font-semibold">Supporting sentence</label>
-              <textarea id="slot2" class="slots w-full p-3 border border-gray-300 rounded-md resize-none" rows="1" required></textarea>
-            </div>
-            <div class="mb-4">
-              <label class="block mb-2 text-lg font-semibold">Supporting sentence</label>
-              <textarea id="slot3" class="slots w-full p-3 border border-gray-300 rounded-md resize-none" rows="1" required></textarea>
-            </div>
-            <div class="mb-4">
-              <label class="block mb-2 text-lg font-semibold">Supporting sentence</label>
-              <textarea id="slot4" class="slots w-full p-3 border border-gray-300 rounded-md resize-none" rows="1" required></textarea>
-            </div>
-            <div class="mb-4">
-              <label class="block mb-2 text-lg font-semibold">Supporting sentence</label>
-              <textarea id="slot5" class="slots w-full p-3 border border-gray-300 rounded-md resize-none" rows="1" required></textarea>
-            </div>
-            <div class="word-count-box mb-4">
-              <span class="font-semibold">Total Word Count: </span><span id="word-count">0</span>
-            </div>
-            <button id="download-btn" type="button" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-700" disabled>Download</button>
-          </form>
+  <body>
+    <div class="container">
+      <h1>Paragraph Writing</h1>
+      <div class="content">
+        <div class="slots-section">
+          <textarea class="slot"></textarea>
+          <textarea class="slot"></textarea>
+          <textarea class="slot"></textarea>
+          <textarea class="slot"></textarea>
+          <textarea class="slot"></textarea>
+          <p>Total words: <span id="word-counter">0</span></p>
+          <button id="download-btn" disabled>Download</button>
         </div>
-        <!-- Form ends here -->
-    
-        <!-- Section with tips starts here -->
-        <div class="bg-gray-100 p-4 rounded-md shadow-md" id="tips-section">
-          <h2 class="text-2xl font-bold mb-4">Writing a Good Body Paragraph</h2>
-          <ul class="list-disc list-inside">
-            <li>Start the paragraph with a strong topic sentence that presents the main point.</li>
-            <li>Provide relevant supporting evidence or examples to justify your claim.</li>
-            <li>Use clear and logical transitions between sentences to maintain coherence.</li>
-            <li>Ensure that each sentence is relevant and adds value to the overall argument.</li>
-            <li>Conclude the paragraph by summarizing the key points or linking the paragraph to the next.</li>
+
+        <div class="tips-section">
+          <h2>🌱 App Usage</h2>
+          <ul>
+            <li>One sentence per slot.</li>
+            <li>Capitalize first letter.</li>
+            <li>Finish with a full stop.</li>
+            <li>Minimum 100 words.</li>
+          </ul>
+          <h2>✨ Tips</h2>
+          <ul>
+            <li>Vary sentence lengths.</li>
+            <li>Begin with a clear topic.</li>
+            <li>Consider each sentence's purpose.</li>
+            <li>Include only relevant ideas.</li>
           </ul>
         </div>
-        <!-- Section with tips ends here -->
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/docx@8.0.1/build/index.min.js"></script>
+    <footer><a href="../index.html">Back to index</a></footer>
     <script src="script.js"></script>
   </body>
 </html>
