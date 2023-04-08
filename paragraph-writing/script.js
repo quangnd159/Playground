@@ -5,6 +5,8 @@ const wordCounter = document.getElementById("word-counter");
 
 slots.forEach((slot) => {
     slot.addEventListener("input", checkRequirements);
+    slot.addEventListener("blur", checkFullStop);
+    slot.addEventListener("focus", removeRedBackground); // Add this line to remove the red background when the input is focused
 });
 
 downloadBtn.addEventListener("click", () => {
@@ -24,11 +26,9 @@ function checkRequirements() {
         const words = text.trim().split(/\s+/).filter((word) => word.length > 0);
         const sentences = text.trim().split(/[.?!]+/).filter((sentence) => sentence.trim().length > 0);
 
-        if (sentences.length > 1) {
-            slot.style.backgroundColor = "#ffcccc";
+        // Check if there's more than one sentence or if last character isn't a full stop
+        if (sentences.length > 1 || text.trim().slice(-1) !== '.') {
             validSentences = false;
-        } else {
-            slot.style.backgroundColor = "";
         }
 
         if (words.length > 0) {
@@ -41,6 +41,18 @@ function checkRequirements() {
     wordCounter.textContent = totalWords;
 
     downloadBtn.disabled = !(totalWords >= 100 && sentencesCount === slots.length && validSentences);
+}
+
+function checkFullStop(event) {
+    const slot = event.target;
+    const text = slot.value;
+    const sentences = text.trim().split(/[.?!]+/).filter((sentence) => sentence.trim().length > 0);
+
+    if (text.trim().length > 0 && (text.trim().slice(-1) !== '.' || sentences.length > 1)) {
+        slot.style.backgroundColor = "#ffcccc";
+    } else {
+        slot.style.backgroundColor = "";
+    }
 }
 
 function generateDocx(paragraphText) {
@@ -66,4 +78,10 @@ function generateDocx(paragraphText) {
     Packer.toBlob(document).then((blob) => {
         saveAs(blob, "paragraph.docx");
     });
+}
+
+// Add the removeRedBackground function
+function removeRedBackground(event) {
+    const slot = event.target;
+    slot.style.backgroundColor = "";
 }
