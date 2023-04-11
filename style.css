@@ -6,11 +6,17 @@ body {
   background-color: #f0f2f5; /* Added modern background color */
 }
 
+.content-container {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .grid-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .card {
